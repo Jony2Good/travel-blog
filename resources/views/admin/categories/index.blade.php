@@ -1,5 +1,5 @@
 @extends('admin.layouts.main')
-@section('page.title', 'Добавить категорию')
+@section('page.title', 'Список категорий')
 @section('content')
     <div class="content-wrapper">
         <div class="content-header">
@@ -18,20 +18,18 @@
         </div>
         <section class="content">
             <div class="container-fluid">
-
                 <div class="row">
-                    <div class="col-1 mb-3"><a href="" class="btn btn-block btn-primary">{{__('Добавить')}}</a></div>
+                    <div class="col-1 mb-3"><a href="{{ route('admin.categories.create') }}" class="btn btn-block btn-primary">{{__('Добавить')}}</a></div>
                 </div>
                 <div class="row">
                     <div class="col-8">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">{{__('Список категорий')}}</h3>
-
                                 <div class="card-tools">
                                     <div class="input-group input-group-sm" style="width: 150px;">
                                         <input type="text" name="table_search" class="form-control float-right"
-                                               placeholder="Search">
+                                               placeholder="{{__('Поиск')}}">
                                         <div class="input-group-append">
                                             <button type="submit" class="btn btn-default">
                                                 <i class="fas fa-search"></i>
@@ -44,14 +42,36 @@
                                 <table class="table table-hover text-nowrap">
                                     <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Name</th>
-                                        <th>Create</th>
-                                        <th>Update</th>
-                                        <th>Actions</th>
+                                        <th>{{__('Номер')}}</th>
+                                        <th>{{__('Название категории')}}</th>
+                                        <th>{{__('Дата создания')}}</th>
+                                        <th>{{__('Дата изменения')}}</th>
+                                        <th>{{__('Действия')}}</th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach($categories as $item)
+                                        <tr>
+                                            <td>{{$item->id}}</td>
+                                            <td>{{$item->title}}</td>
+                                            <td>{{$item->created_at}}</td>
+                                            <td>{{$item->updated_at}}</td>
+                                            <td class="d-flex">
+                                                <a href="{{route('admin.categories.show', $item->id)}}"><i
+                                                        class="far fa-eye mr-2"></i></a>
+                                                <a class="text-success" href=""><i
+                                                        class="fas fa-pencil-alt mr-2"></i></a>
+                                                <form
+                                                    action="" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="border-0 text-danger bg-transparent" type="submit">
+                                                        <i class="far fa-times-circle"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
