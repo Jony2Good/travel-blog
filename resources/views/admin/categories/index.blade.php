@@ -10,7 +10,8 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin')}}">{{__('Назад')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">{{__('На главную')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tags')}}">{{__('Тэги')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -19,7 +20,8 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-1 mb-3"><a href="{{ route('admin.categories.create') }}" class="btn btn-block btn-primary">{{__('Добавить')}}</a></div>
+                    <div class="col-1 mb-3"><a href="{{ route('admin.categories.create') }}"
+                                               class="btn btn-block btn-primary">{{__('Добавить')}}</a></div>
                 </div>
                 <div class="row">
                     <div class="col-8">
@@ -59,10 +61,10 @@
                                             <td class="d-flex">
                                                 <a href="{{route('admin.categories.show', $item->id)}}"><i
                                                         class="far fa-eye mr-2"></i></a>
-                                                <a class="text-success" href=""><i
+                                                <a class="text-success"
+                                                   href="{{route('admin.categories.edit', $item->id)}}"><i
                                                         class="fas fa-pencil-alt mr-2"></i></a>
-                                                <form
-                                                    action="" method="post">
+                                                <form action="{{ route('admin.categories.delete', $item->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="border-0 text-danger bg-transparent" type="submit">
