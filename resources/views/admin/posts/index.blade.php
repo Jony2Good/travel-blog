@@ -41,8 +41,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-body table-responsive p-0">
-                                <table class="table table-hover text-nowrap">
+                            <div class="card-body table-responsive no-wrap p-0">
+                                <table class="table table-hover">
                                     <thead>
                                     <tr>
                                         <th>{{__('Номер')}}</th>
@@ -58,7 +58,12 @@
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->title}}</td>
-                                            <td>{{$item->content}}</td>
+                                            <td>
+
+                                                   {{$item->content}}
+
+
+                                               </td>
                                             <td>{{$item->created_at}}</td>
                                             <td>{{$item->updated_at}}</td>
                                             <td class="d-flex">

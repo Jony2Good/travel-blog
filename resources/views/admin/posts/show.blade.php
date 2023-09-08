@@ -1,15 +1,15 @@
 @extends('admin.layouts.main')
-@section('page.title', $tag->title)
+@section('page.title', $post->title)
 @section('content')
     <div class="content-wrapper">
         <div class="content-header">
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{$tag->title}}</h1>
-                        <a class="text-success" href="{{ route('admin.tags.edit', $tag->id )}}"><i
+                        <h1 class="m-0 mr-2">{{$post->title}}</h1>
+                        <a class="text-success" href="{{ route('admin.posts.edit', $post->id )}}"><i
                                 class="fas fa-pencil-alt"></i></a>
-                        <form action="{{ route('admin.tags.delete', $tag->id ) }}" method="post">
+                        <form action="{{ route('admin.posts.delete', $post->id ) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <button class="border-0 text-danger bg-transparent" type="submit">
@@ -19,8 +19,10 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{route('admin.tags')}}">{{__('Назад')}}</a></li>
-                            <li class="breadcrumb-item"><a href="{{route('admin.categories')}}">{{__('Категории')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.posts')}}">{{__('Назад')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.categories')}}">{{__('Категории')}}</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{{route('admin.tags')}}">{{__('Тэги')}}</a></li>
                         </ol>
                     </div>
                 </div>
@@ -35,20 +37,24 @@
                                 <table class="table table-hover text-nowrap">
                                     <tbody>
                                     <tr>
-                                        <td>{{__('Номер тэга')}}</td>
-                                        <td>{{$tag->id}}</td>
+                                        <td>{{__('Номер истории')}}</td>
+                                        <td>{{$post->id}}</td>
                                     </tr>
                                     <tr>
-                                        <td>{{__('Название тэга')}}</td>
-                                        <td>{{$tag->title}}</td>
+                                        <td>{{__('Название истории')}}</td>
+                                        <td>{{$post->title}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{__('Содержание истории')}}</td>
+                                        <td >{{$post->content}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{__('Дата создания')}}</td>
-                                        <td>{{$tag->created_at}}</td>
+                                        <td>{{$post->created_at}}</td>
                                     </tr>
                                     <tr>
                                         <td>{{__('Дата изменения')}}</td>
-                                        <td>{{$tag->updated_at}}</td>
+                                        <td>{{$post->updated_at}}</td>
                                     </tr>
                                     </tbody>
                                 </table>

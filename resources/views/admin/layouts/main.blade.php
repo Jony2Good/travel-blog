@@ -76,12 +76,13 @@
 <script src="{{asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.j')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('dist/js/adminlte.js')}}"></script>
+<!-- bs-custom-file-input -->
+<script src="{{asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
 <script>
     $('#summernote').summernote({
-        placeholder: 'Что вы хотели рассказать?',
-        tabsize: 2,
+        placeholder: 'О чем вы хотели рассказать?',
         height: 200,
         toolbar: [
             ['style', ['style']],
@@ -92,6 +93,9 @@
             ['insert', ['link', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
         ]
+    });
+    $(function () {
+        bsCustomFileInput.init();
     });
 </script>
 </body>

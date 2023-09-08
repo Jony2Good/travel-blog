@@ -23,7 +23,11 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => 'required|string',
-            'content' => 'required|string'
+            'content' => 'required|string',
+            'category_id' => 'required|string',
+            'image-main' => 'required|file',
+            'image-prev' => 'required|file',
+
         ];
     }
 }
