@@ -20,7 +20,7 @@
         </div>
         <section class="content">
             <div class="container-fluid">
-                <form action="{{ route('admin.tags.update', $post->id) }}" method="post">
+                <form action="{{ route('admin.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     @method('PATCH')
                     <div class="row">
@@ -38,7 +38,7 @@
                                 <label for="category">{{__('Категория')}}</label>
                                 <select class="form-control" name="category_id" id="category">
                                     @foreach($categories as $item)
-                                        <option {{ $item->id == $post->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->title }}</option>
+                                        <option {{ $post->category_id === $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -47,9 +47,9 @@
                                 <select multiple class="form-control" name="tags[]" id="tags">
                                     @foreach($tags as $item)
                                         <option
-{{--                                            @foreach($post->tags as $postTag)--}}
-{{--                                                {{ $item->id == $postTag->id ? 'selected' : ''}}--}}
-{{--                                            @endforeach--}}
+                                            @foreach($post->tags as $postTag)
+                                                {{ $item->id == $postTag->id ? 'selected' : ''}}
+                                            @endforeach
                                             value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
@@ -66,11 +66,54 @@
                                 <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">{{__('Добавить')}}</button>
+
                         </div>
                     </div>
-                </form>
+                    <div class="row">
+                        <div class="card-body">
 
+                            <div class="form-group mb-3 col-4">
+                                <label for="prev_image">{{__('Добавить изображение для превью')}}</label>
+                                <div class="w-50 mb-3">
+                                    <img class="w-50" src="{{ asset('storage/' . $post->prev_image) }}" alt="{{__('Красивая картинка')}}">
+                                </div>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input name="prev_image" type="file" class="custom-file-input" id="prev_image">
+                                        <label class="custom-file-label"
+                                               for="prev_image">{{__('Добавить изображение')}}</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">{{__('Добавить')}}</span>
+                                    </div>
+                                </div>
+                                @error('prev_image')
+                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group mb-3 col-4">
+                                <label for="main_image">{{__('Добавить главное изображение')}}</label>
+                                <div class="w-50 mb-3">
+                                    <img class="w-50" src="{{ asset('storage/' . $post->main_image) }}" alt="{{__('Красивая картинка')}}">
+                                </div>
+                                <div class="input-group ">
+                                    <div class="custom-file">
+                                        <input name="main_image" type="file" class="custom-file-input" id="main_image">
+                                        <label class="custom-file-label"
+                                               for="main_image">{{__('Добавить изображение')}}</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">{{__('Добавить')}}</span>
+                                    </div>
+                                </div>
+                                @error('main_image')
+                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">{{__('Изменить')}}</button>
+                </form>
             </div>
         </section>
     </div>

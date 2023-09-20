@@ -21,7 +21,7 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-1 mb-3"><a href="{{ route('admin.posts.create') }}"
+                    <div class="col-2 mb-3"><a href="{{ route('admin.posts.create') }}"
                                                class="btn btn-block btn-primary">{{__('Добавить')}}</a></div>
                 </div>
                 <div class="row">

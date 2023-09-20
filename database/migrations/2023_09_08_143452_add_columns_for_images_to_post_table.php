@@ -23,8 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropColumn('main_image');
-            $table->dropColumn('prev_image');
+            $table->dropColumn('main_image', 'prev_image');
         });
     }
 };

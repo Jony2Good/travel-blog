@@ -12,7 +12,14 @@ class UpdateController extends Controller
     public function __invoke(UpdateRequest $request, Post $post)
     {
         $data = $request->validated();
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $data['prev_image'] = $request->file('prev_image')->store('uploads', 'public');
+        $data['main_image'] = $request->file('main_image')->store('uploads', 'public');
+
         $post->update($data);
-        return view('admin.categories.show', compact('post'));
+        $post->tags()->sync($tags);
+        return view('admin.posts.show', compact('post'));
     }
 }

@@ -14,9 +14,14 @@ class StoreController extends Controller
     public function __invoke(StoreRequest $request)
     {
         $data = $request->validated();
-        $data['prev_image'] = Storage::put('/images', $data['prev_image']);
-        $data['main_image'] = Storage::put('/images', $data['main_image']);
-        Post::create($data);
+        $tags = $data['tags'];
+        unset($data['tags']);
+
+        $data['prev_image'] = $request->file('prev_image')->store('uploads', 'public');
+        $data['main_image'] = $request->file('main_image')->store('uploads', 'public');
+
+        $post = Post::firstOrCreate($data);
+        $post->tags()->attach($tags);
         return redirect()->route('admin.posts');
     }
 }

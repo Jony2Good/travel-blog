@@ -37,16 +37,19 @@
                             <div class="form-group mb-3 col-2">
                                 <label for="category">{{__('Категория')}}</label>
                                 <select class="form-control" name="category_id" id="category">
+                                    <option disabled selected hidden>{{__('Без категории')}}</option>
                                     @foreach($categories as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                        <option {{ $item->id == old('category_id') ? 'selected' : '' }}
+                                            value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
                             <div class="form-group col-2">
                                 <label for="tags">{{__('Тэги')}}</label>
-                                <select multiple class="form-control" name="tags[]" id="tags">
+                                <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="{{__('Выберите тэг')}}" style="width: 100%;">
                                     @foreach($tags as $item)
-                                        <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                        <option {{ is_array(old('tags')) && in_array($item->id, old('tags')) ? 'selected' : '' }}
+                                            value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -78,6 +81,9 @@
                                         <span class="input-group-text">{{__('Добавить')}}</span>
                                     </div>
                                 </div>
+                                @error('prev_image')
+                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                @enderror
                             </div>
                             <div class="form-group mb-3 col-4">
                                 <label for="main_image">{{__('Добавить главное изображение')}}</label>
@@ -91,7 +97,9 @@
                                         <span class="input-group-text">{{__('Добавить')}}</span>
                                     </div>
                                 </div>
-
+                                @error('main_image')
+                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>

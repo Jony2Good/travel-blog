@@ -23,9 +23,20 @@
     <link rel="stylesheet" href="{{asset('plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
     <!-- Daterange picker -->
     <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
-
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{asset('plugins/select2/css/select2.min.css')}}">
+    <style>
+        .custom-file-input:lang(en) ~ .custom-file-label::after {
+            display: none;
+        }
+        .select2-container--default .select2-selection--multiple .select2-selection__choice {
+            background-color: #007bff;
+            border-color: #006fe6;
+        }
+    </style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+
 <div class="wrapper">
     <!-- Preloader -->
     <div class="preloader flex-column justify-content-center align-items-center">
@@ -80,6 +91,8 @@
 <script src="{{asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <!-- Summernote -->
 <script src="{{asset('plugins/summernote/summernote-bs4.min.js')}}"></script>
+<!-- Select2 -->
+<script src="{{asset('plugins/select2/js/select2.full.min.js')}}"></script>
 <script>
     $('#summernote').summernote({
         placeholder: 'О чем вы хотели рассказать?',
@@ -96,7 +109,10 @@
     });
     $(function () {
         bsCustomFileInput.init();
+        //Initialize Select2 Elements
+        $('.select2').select2()
     });
 </script>
+
 </body>
 </html>

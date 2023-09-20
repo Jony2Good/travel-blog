@@ -24,10 +24,11 @@ class StoreRequest extends FormRequest
         return [
             'title' => 'required|string',
             'content' => 'required|string',
-            'category_id' => 'required|string',
-            'image-main' => 'required|file',
-            'image-prev' => 'required|file',
-
+            'category_id' => 'required|integer',
+            'tags' => 'nullable|array',
+            'tags.*' => 'integer|nullable',
+            'main_image' => 'required|image',
+            'prev_image' => 'required|image',
         ];
     }
 }
