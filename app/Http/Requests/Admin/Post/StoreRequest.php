@@ -31,4 +31,19 @@ class StoreRequest extends FormRequest
             'prev_image' => 'required|image',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'Необходимо заполнить поле',
+            'title.string' => 'Неверный формат данных',
+            'content.required' => 'Необходимо заполнить поле',
+            'content.string' => 'Неверный формат данных',
+            'category_id.required' => 'Выберите категорию',
+            'main_image.required' => 'Необходимо прикрепить картинку',
+            'main_image.image' => 'Недопустимое расширение у файла',
+            'prev_image.required' => 'Необходимо прикрепить картинку',
+            'prev_image.image' => 'Недопустимое расширение у файла',
+        ];
+    }
 }

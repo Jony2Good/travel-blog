@@ -25,24 +25,27 @@
                     @method('PATCH')
                     <div class="row">
                         <div class="card-body">
-                            <div class="form-group mb-3 col-2">
+                            <div class="form-group mb-3 col-3">
                                 <label>{{ __('Название истории') }}</label>
                                 <input type="text" name="title" class="form-control mb-2"
                                        placeholder="{{__('Введите название истории')}}"
                                        value="{{ $post->title }}">
                                 @error('title')
-                                <div class="text-danger">{{__('Поле не должно быть пустым')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-3 col-2">
+                            <div class="form-group mb-3 col-3">
                                 <label for="category">{{__('Категория')}}</label>
                                 <select class="form-control" name="category_id" id="category">
                                     @foreach($categories as $item)
                                         <option {{ $post->category_id === $item->id ? 'selected' : ''}} value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-3">
                                 <label for="tags">{{__('Тэги')}}</label>
                                 <select multiple class="form-control" name="tags[]" id="tags">
                                     @foreach($tags as $item)
@@ -53,6 +56,9 @@
                                             value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
+                                @error('tags')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -63,7 +69,7 @@
                                 <textarea class="form-control mb-2 @error('content') is-invalid @enderror"
                                           id="summernote" name="content">{{ $post->content }}</textarea>
                                 @error('content')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
@@ -88,7 +94,7 @@
                                     </div>
                                 </div>
                                 @error('prev_image')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3 col-4">
@@ -107,7 +113,7 @@
                                     </div>
                                 </div>
                                 @error('main_image')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>

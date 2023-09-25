@@ -25,33 +25,39 @@
                     @csrf
                     <div class="row">
                         <div class="card-body">
-                            <div class="form-group mb-3 col-2">
+                            <div class="form-group mb-3 col-3">
                                 <label for="post-title">{{__('Название истории')}}</label>
                                 <input type="text" name="title" id="post-title"
                                        class="form-control mb-2 @error('title') is-invalid @enderror"
                                        placeholder="{{__('Введите название истории')}}">
                                 @error('title')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group mb-3 col-2">
+                            <div class="form-group mb-3 col-3">
                                 <label for="category">{{__('Категория')}}</label>
-                                <select class="form-control" name="category_id" id="category">
+                                <select class="form-control @error('category_id') is-invalid @enderror" name="category_id" id="category">
                                     <option disabled selected hidden>{{__('Без категории')}}</option>
                                     @foreach($categories as $item)
                                         <option {{ $item->id == old('category_id') ? 'selected' : '' }}
                                             value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
+                                @error('category_id')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                            <div class="form-group col-2">
+                            <div class="form-group col-3">
                                 <label for="tags">{{__('Тэги')}}</label>
-                                <select class="select2" multiple="multiple" name="tags[]" id="tags" data-placeholder="{{__('Выберите тэг')}}" style="width: 100%;">
+                                <select class="select2 @error('tags') is-invalid @enderror" multiple="multiple" name="tags[]" id="tags" data-placeholder="{{__('Выберите тэг')}}" style="width: 100%;">
                                     @foreach($tags as $item)
                                         <option {{ is_array(old('tags')) && in_array($item->id, old('tags')) ? 'selected' : '' }}
                                             value="{{ $item->id }}">{{ $item->title }}</option>
                                     @endforeach
                                 </select>
+                                @error('tags')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                     </div>
@@ -62,7 +68,7 @@
                                 <textarea class="form-control mb-2 @error('content') is-invalid @enderror"
                                           id="summernote" name="content"></textarea>
                                 @error('content')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
@@ -82,7 +88,7 @@
                                     </div>
                                 </div>
                                 @error('prev_image')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group mb-3 col-4">
@@ -98,7 +104,7 @@
                                     </div>
                                 </div>
                                 @error('main_image')
-                                <div class="text-danger">{{__('Поле необходимо заполнить')}}</div>
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>

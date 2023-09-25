@@ -13,14 +13,18 @@ class PostService
     {
         try {
             Db::beginTransaction();
-            $tags = $data['tags'];
-            unset($data['tags']);
+            if (isset($data['tags'])) {
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
 
             $data['prev_image'] = $request->file('prev_image')->store('uploads', 'public');
             $data['main_image'] = $request->file('main_image')->store('uploads', 'public');
 
             $post = Post::firstOrCreate($data);
-            $post->tags()->attach($tags);
+            if (isset($data['tags'])) {
+                $post->tags()->attach($tags);
+            }
             Db::commit();
         } catch (\Exception $e) {
             DB::rollBack();
@@ -31,9 +35,11 @@ class PostService
     public function update(array $data, UpdateRequest $request, Post $post)
     {
         try {
-            Db::beginTransaction();
-            $tags = $data['tags'];
-            unset($data['tags']);
+             Db::beginTransaction();
+            if (isset($data['tags'])) {
+                $tags = $data['tags'];
+                unset($data['tags']);
+            }
             if (isset($data['prev_image'])) {
                 $data['prev_image'] = $request->file('prev_image')->store('uploads', 'public');
             }
@@ -41,9 +47,13 @@ class PostService
                 $data['main_image'] = $request->file('main_image')->store('uploads', 'public');
             }
             $post->update($data);
-            $post->tags()->sync($tags);
+            if (!empty($tags)) {
+                $post->tags()->sync($tags);
+            } else {
+                $post->tags()->detach();
+            }
             Db::commit();
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             Db::rollBack();
             abort(500);
         }
