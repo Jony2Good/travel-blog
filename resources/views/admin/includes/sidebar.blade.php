@@ -12,6 +12,14 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">{{__('Каталог')}}</li>
                 <li class="nav-item">
+                    <a href="{{ route('admin') }}" class="nav-link">
+                        <i class="nav-icon fa fa-table"></i>
+                        <p>
+                            {{__('Главная таблица')}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.users') }}" class="nav-link">
                         <i class="nav-icon fa fa-users"></i>
                         <p>

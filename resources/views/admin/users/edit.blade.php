@@ -39,6 +39,19 @@
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
+                            <div class="form-group mb-3">
+                                <label for="role">{{__('Выберите роль')}}</label>
+                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
+                                    <option disabled selected hidden>{{__('Без роли')}}</option>
+                                    @foreach($roles as $id => $item)
+                                        <option {{ $id == $user->role ? 'selected' : '' }}
+                                                value="{{ $id }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                @error('role')
+                                <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <button type="submit" class="btn btn-primary">{{__('Изменить')}}</button>
                         </div>
                     </form>

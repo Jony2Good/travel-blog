@@ -39,11 +39,16 @@
                                 @enderror
                             </div>
                             <div class="form-group mb-3">
-                                <label for="password">{{__('Пароль')}}</label>
-                                <input type="password" name="password" id="password" class="form-control mb-2 @error('password') is-invalid @enderror"
-                                       placeholder="Пароль">
-                                @error('password')
-                                <div class="text-danger">{{$message}}</div>
+                                <label for="role">{{__('Выберите роль')}}</label>
+                                <select class="form-control @error('role') is-invalid @enderror" name="role" id="role">
+                                    <option disabled selected hidden>{{__('Без роли')}}</option>
+                                    @foreach($roles as $id => $item)
+                                        <option {{ $id == old('role') ? 'selected' : '' }}
+                                                value="{{ $id }}">{{ $item }}</option>
+                                    @endforeach
+                                </select>
+                                @error('role')
+                                <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">{{__('Добавить')}}</button>
