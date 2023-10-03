@@ -2,25 +2,24 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Notifications\SendVerifyWithQueueNotification;
+use App\Service\Role;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
-    const ROLE_ADMIN = 1;
-    const ROLE_VISITOR = 2;
-
-    public static function getRoles()
+    public static function getRoles(): array
     {
         return [
-            self::ROLE_ADMIN => 'Админ',
-            self::ROLE_VISITOR => 'Посетитель',
+            Role::Admin->value => Role::Admin->getRoleName(),
+            Role::Visitor->value => Role::Visitor->getRoleName(),
         ];
     }
     /**
@@ -54,4 +53,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function sendEmailVerificationNotification()
+    {
+        return $this->notify(new SendVerifyWithQueueNotification());
+    }
 }

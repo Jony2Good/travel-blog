@@ -27,8 +27,14 @@
                 </li>
             </ul>
             <ul class="navbar-nav mt-2 mt-lg-0">
-                <li class="nav-item">
+                <li class="nav-item align-self-center">
                     <a class="nav-link" href="#">{{ __('Загрузить пост') }}</a>
+                </li>
+                <li class="nav-item">
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button class="btn" type="submit"> <i class="fa fa-user-circle" aria-hidden="true"></i></button>
+                    </form>
                 </li>
             </ul>
         </div>
