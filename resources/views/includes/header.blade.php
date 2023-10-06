@@ -1,6 +1,7 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light shadow">
-        <a class="navbar-brand" href="index.html"><img class="logo" src="{{asset('assets/images/logo-eva.png')}}" alt="EVA Blog"></a>
+        <a class="navbar-brand" href="index.html"><img class="logo" src="{{asset('assets/images/logo-eva.png')}}"
+                                                       alt="EVA Blog"></a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#edicaMainNav"
                 aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,7 +34,7 @@
                 <li class="nav-item">
                     <form action="{{ route('logout') }}" method="post">
                         @csrf
-                        <button class="btn" type="submit"> <i class="fa fa-user-circle" aria-hidden="true"></i></button>
+                        <button class="btn" type="submit"><i class="fas fa-sign-out-alt"></i></button>
                     </form>
                 </li>
             </ul>

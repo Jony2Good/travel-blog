@@ -12,42 +12,34 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-header">{{__('Каталог')}}</li>
                 <li class="nav-item">
-                    <a href="{{ route('admin') }}" class="nav-link">
+                    <a href="{{ route('personal') }}" class="nav-link">
                         <i class="nav-icon fa fa-table"></i>
                         <p>
-                            {{__('Главная таблица')}}
+                            {{__('Личный кабинет')}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.users') }}" class="nav-link">
-                        <i class="nav-icon fa fa-users"></i>
+                    <a href="{{ route('personal.likes') }}" class="nav-link">
+                        <i class="nav-icon far fa-heart"></i>
                         <p>
-                            {{__('Пользователи')}}
+                            {{__('Понравившиеся посты')}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.categories') }}" class="nav-link">
+                    <a href="{{ route('personal.comments') }}" class="nav-link">
                         <i class="nav-icon fa fa-list" aria-hidden="true"></i>
                         <p>
-                            {{__('Категории')}}
+                            {{__('Комментарии')}}
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.tags') }}" class="nav-link">
-                        <i class="nav-icon fa fa-tags"></i>
-                        <p>
-                            {{__('Тэги')}}
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('admin.posts') }}" class="nav-link">
+                    <a href="" class="nav-link">
                         <i class="nav-icon fa fa-comments"></i>
                         <p>
-                            {{__('Посты')}}
+                            {{__('Опубликовать пост')}}
                         </p>
                     </a>
                 </li>

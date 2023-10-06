@@ -18,7 +18,20 @@ Route::group(['namespace' => 'App\Http\Controllers\Main'], function () {
     Route::get('/', 'IndexController')->name('home');
 });
 
-//админ панель
+//личный кабинет
+Route::group(['namespace' => 'App\Http\Controllers\Personal', 'prefix' => 'personal', 'middleware' => ['auth','verified']], function () {
+    Route::group(['namespace' => 'Main'], function () {
+        Route::get('/', 'IndexController')->name('personal');
+    });
+    Route::group(['namespace' => 'Likes', 'prefix' => 'likes'], function () {
+        Route::get('/', 'IndexController')->name('personal.likes');
+    });
+    Route::group(['namespace' => 'Comments', 'prefix' => 'comments'], function () {
+        Route::get('/', 'IndexController')->name('personal.comments');
+    });
+});
+
+
 Route::group(['namespace' => 'App\Http\Controllers\Admin', 'prefix' => 'admin', 'middleware' => ['auth','admin', 'verified']], function () {
 
     Route::group(['namespace' => 'Main'], function () {
