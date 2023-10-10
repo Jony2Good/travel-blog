@@ -109,7 +109,6 @@
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" class="btn btn-primary">{{__('Добавить')}}</button>
                 </form>
             </div>

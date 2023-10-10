@@ -58,12 +58,7 @@
                                         <tr>
                                             <td>{{$item->id}}</td>
                                             <td>{{$item->title}}</td>
-                                            <td>
-
-                                                   {{$item->content}}
-
-
-                                               </td>
+                                            <td>{{$item->content}}</td>
                                             <td>{{$item->created_at}}</td>
                                             <td>{{$item->updated_at}}</td>
                                             <td class="d-flex">
